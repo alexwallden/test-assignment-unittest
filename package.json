@@ -4,5 +4,9 @@
     "@parcel/transformer-typescript-tsc": "^2.8.0",
     "@parcel/validator-typescript": "^2.8.0",
     "parcel": "^2.8.0"
+  },
+  "scripts": {
+    "test": "npx jest --watchAll",
+    "start": "npx parcel src/index.html --no-cache"
   }
 }
