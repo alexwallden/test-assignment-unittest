@@ -18,3 +18,13 @@ export function changeTodo(todo: Todo) {
 export function removeAllTodos(todos: Todo[]) {
   todos.splice(0, todos.length);
 }
+
+export function sortTodos(todos: Todo[]) {
+  todos.sort((a, b) => a.text.toUpperCase() > b.text.toUpperCase() ? 1 : -1);
+}
+
+export function domTest() {
+  const todosContainer: HTMLParagraphElement = document.getElementById('todos') as HTMLParagraphElement;
+
+  todosContainer.innerHTML = 'hej';
+}

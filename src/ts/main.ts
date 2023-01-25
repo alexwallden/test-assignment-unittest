@@ -1,4 +1,4 @@
-import { addTodo, changeTodo, removeAllTodos } from "./functions";
+import { addTodo, changeTodo, removeAllTodos, sortTodos } from "./functions";
 import { Todo } from "./models/Todo";
 
 let todos: Todo[] = JSON.parse(localStorage.getItem("todos") || "[]");
@@ -21,7 +21,7 @@ document.getElementById("clearTodos")?.addEventListener("click", () => {
   }
 );
 
-function createNewTodo(todoText: string, todos: Todo[]) {
+export function createNewTodo(todoText: string, todos: Todo[]) {
   let result = addTodo(todoText, todos);
 
   if (result.success) {
@@ -32,14 +32,17 @@ function createNewTodo(todoText: string, todos: Todo[]) {
 }
 
 export function createHtml(todos: Todo[]) {
+  sortTodos(todos);
   localStorage.setItem("todos", JSON.stringify(todos));
 
   let todosContainer: HTMLUListElement = document.getElementById(
     "todos"
   ) as HTMLUListElement;
 
-  todosContainer.innerHTML = "";
+  console.log(todosContainer);
 
+  if (todosContainer) todosContainer.innerHTML = ""; // TODO: Ta bort IF statement!
+  
   for (let i = 0; i < todos.length; i++) {
     let li: HTMLLIElement = document.createElement("li");
 
@@ -62,7 +65,7 @@ export function toggleTodo(todo: Todo) {
   createHtml(todos);
 }
 
-function displayError(error: string, show: boolean) {
+export function displayError(error: string, show: boolean) {
   let errorContainer: HTMLDivElement = document.getElementById(
     "error"
   ) as HTMLDivElement;
@@ -76,7 +79,7 @@ function displayError(error: string, show: boolean) {
   }
 }
 
-function clearTodos(todos: Todo[]) {
+export function clearTodos(todos: Todo[]) {
   removeAllTodos(todos);
   createHtml(todos);
 }

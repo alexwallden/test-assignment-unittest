@@ -1,6 +1,11 @@
-import { changeTodo, removeAllTodos, addTodo } from "../ts/functions";
+/**
+ * @jest-environment jsdom
+ */
+
+import { changeTodo, removeAllTodos, addTodo, domTest } from "../ts/functions";
 import { Todo } from "../ts/models/Todo";
 import { IAddResponse } from "../ts/models/IAddResult";
+import * as functions from '../ts/functions';
 
 test('should change todo.done to true', () => {
   // Arrange
@@ -26,7 +31,7 @@ test('should clear array', () => {
 
 describe('test function addTodo', () => {
   test('should return success: true and add todo to array', () => {
-    const arr: Todo[] = [new Todo('Diska', false)]
+    const arr: Todo[] = [new Todo('Diska', false)];
     const arrLength = arr.length;
     const todoText = 'Handla';
 
@@ -34,8 +39,7 @@ describe('test function addTodo', () => {
 
     expect(response.success).toBe(true);
     expect(arr.length).toBe(arrLength + 1);
-
-  })
+  });
 
   test('should return success: false', () => {
     const todos: Todo[] = []
@@ -44,7 +48,14 @@ describe('test function addTodo', () => {
     const response: IAddResponse = addTodo(todoText, todos);
     
     expect(response.success).toBe(false);
-  })
-})
+  });
+});
 
+test('should return hej', () => {
+  document.body.innerHTML = `<p id="todos"></p>`;
+
+  domTest();
+
+  expect(document.getElementById('todos')?.innerHTML).toBe('hej');
+});
 
