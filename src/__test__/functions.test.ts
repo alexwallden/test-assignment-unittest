@@ -2,7 +2,7 @@
  * @jest-environment jsdom
  */
 
-import { changeTodo, removeAllTodos, addTodo, domTest } from "../ts/functions";
+import { changeTodo, removeAllTodos, addTodo, domTest, sortTodos } from "../ts/functions";
 import { Todo } from "../ts/models/Todo";
 import { IAddResponse } from "../ts/models/IAddResult";
 import * as functions from '../ts/functions';
@@ -59,3 +59,10 @@ test('should return hej', () => {
   expect(document.getElementById('todos')?.innerHTML).toBe('hej');
 });
 
+test('should sort array after name', () => {
+  const todos = [new Todo('Utred', false), new Todo('Träna', false), new Todo('Agna bete', false)];
+  
+  sortTodos(todos);
+
+  expect(todos[0].text.slice(0, 1).toUpperCase() < todos[todos.length - 1].text.slice(0, 1).toUpperCase()).toBe(true);
+});
