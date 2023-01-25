@@ -18,7 +18,8 @@
     "testEnvironment": "node",
     "collectCoverage": true,
     "coverageReporters": [
-      "html"
+      "html",
+      "text"
     ]
   }
 }

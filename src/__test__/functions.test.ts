@@ -24,13 +24,27 @@ test('should clear array', () => {
   expect(arr.length).toBe(0);
 });
 
-test('should return success: false', () => {
-  const todos: Todo[] = []
-  const todoText = 'WO';
+describe('test function addTodo', () => {
+  test('should return success: true and add todo to array', () => {
+    const arr: Todo[] = [new Todo('Diska', false)]
+    const arrLength = arr.length;
+    const todoText = 'Handla';
 
-  const response: IAddResponse = addTodo(todoText, todos);
+    const response = addTodo(todoText, arr);
 
-  expect(response.success).toBe(false);
+    expect(response.success).toBe(true);
+    expect(arr.length).toBe(arrLength + 1);
+
+  })
+
+  test('should return success: false', () => {
+    const todos: Todo[] = []
+    const todoText = 'WO';
+    
+    const response: IAddResponse = addTodo(todoText, todos);
+    
+    expect(response.success).toBe(false);
+  })
 })
 
 
