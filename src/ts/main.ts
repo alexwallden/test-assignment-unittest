@@ -3,23 +3,25 @@ import { Todo } from "./models/Todo";
 
 let todos: Todo[] = JSON.parse(localStorage.getItem("todos") || "[]");
 
-document.getElementById("clearTodos")?.addEventListener("click", () => {
-  exports.clearTodos(todos);
-});
+export function addButtonListeners() {
+  document.getElementById("clearTodos")?.addEventListener("click", () => {
+    exports.clearTodos(todos);
+  });
 
-(document.getElementById("newTodoForm") as HTMLFormElement)?.addEventListener(
-  "submit",
-  (e: SubmitEvent) => {
-    e.preventDefault();
+  (document.getElementById("newTodoForm") as HTMLFormElement)?.addEventListener(
+    "submit",
+    (e: SubmitEvent) => {
+      e.preventDefault();
 
-    let todoText: string = (
-      document.getElementById("newTodoText") as HTMLInputElement
-    ).value;
-    console.log("Todos when creating", todos);
+      let todoText: string = (
+        document.getElementById("newTodoText") as HTMLInputElement
+      ).value;
+      console.log("Todos when creating", todos);
 
-    createNewTodo(todoText, todos);
-  }
-);
+      exports.createNewTodo(todoText, todos);
+    }
+  );
+}
 
 export function createNewTodo(todoText: string, todos: Todo[]) {
   let result = addTodo(todoText, todos);
@@ -40,7 +42,7 @@ export function createHtml(todos: Todo[]) {
   ) as HTMLUListElement;
 
   todosContainer.innerHTML = "";
-  
+
   for (let i = 0; i < todos.length; i++) {
     let li: HTMLLIElement = document.createElement("li");
 

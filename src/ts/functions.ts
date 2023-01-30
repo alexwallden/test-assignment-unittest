@@ -20,5 +20,5 @@ export function removeAllTodos(todos: Todo[]) {
 }
 
 export function sortTodos(todos: Todo[]) {
-  todos.sort((a, b) => a.text.toUpperCase() > b.text.toUpperCase() ? 1 : -1);
+  todos.sort((a, b) => a.text.localeCompare(b.text));
 }
