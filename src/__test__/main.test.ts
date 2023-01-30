@@ -238,20 +238,7 @@ describe("test eventlisteners", () => {
     todoForm?.submit();
 
     expect(spy).toHaveBeenCalled();
+    spy.mockRestore();
   })
   
 });
-
-/* FUNKTIONER MED BARA LOGIK */
-
-// displayError KLAR
-
-/* FUNKTIONER MED LOGIK OCH FUNKTIONER */
-
-// createHtml KLAR
-// toggleTodo KLAR
-
-/* FUNKTIONER MED FUNKTIONER */
-
-// clearTodos KLAR
-// createNewTodo KLAR
